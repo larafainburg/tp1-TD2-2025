@@ -100,16 +100,13 @@
     PC_load                         MM_enOut                       ; PC <- [Rx]
     reset_microOp
     
-
 01110: ; CLEAN3 
 ; [Rx] <- 0
     MM_enAddr       RB_enOut RB_selectIndexOut=0        ; addr <- Rx
     ALU_enA         ALU_OP=cte0x00                      ; A <- 0
     MM_load         ALU_enOut                           ; [Rx] <- 0
-    
 
 ; [Rx+1] <- 0
-   
     ALU_enA                         RB_enOut RB_selectIndexOut=0   ; A <- Rx
     ALU_enB                         ALU_enOut ALU_OP=cte0x01       ; B <- 1
     MM_enAddr                       ALU_enOut ALU_OP=ADD           ; addr <- RX + 1
@@ -117,7 +114,6 @@
     MM_load                         ALU_enOut                      ; [Rx+1] <- 0
 
 ; [Rx+2] <- 0
-
     ALU_enA                         RB_enOut RB_selectIndexOut=0   ; A <- Rx
     ALU_enB                         ALU_enOut ALU_OP=cte0x02       ; B <- 2
     MM_enAddr                       ALU_enOut ALU_OP=ADD           ; addr <- RX + 2
@@ -125,9 +121,7 @@
     MM_load                         ALU_enOut                      ; [Rx+2] <- 0
     reset_microOp
 
-
 01111: ; COLLATZ Rx, Ry
-    
     ALU_enA                         RB_enOut RB_selectIndexOut=0   ; A <- Rx (parte alta)
     ALU_enB                         RB_enOut RB_selectIndexOut=1   ; B <- Ry (parte baja) 
     ALU_OP=11 ALU_opW
@@ -136,7 +130,6 @@
     RB_enIn RB_selectIndexIn=1      ALU_enOut                      ; Ry <- parte baja
     reset_microOp
 
-    
 10000: ; STR [M] <- Rx
     MM_enAddr                     DE_enOutImm                  ; addr <- M
     MM_load                       RB_enOut RB_selectIndexOut=0 ; [M] <- Rx
